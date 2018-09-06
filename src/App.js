@@ -66,14 +66,16 @@ class App extends Component {
   }
   render() {
     return (
-      <Router>
-        <Route
-          path="/*"
-          component={props => (
-            <FilesandFoldersView {...props} filetree={this.state.filetree} />
-          )}
-        />
-      </Router>
+      <div className="App">
+        <Router>
+          <Route
+            path="/*"
+            component={props => (
+              <FilesandFoldersView {...props} filetree={this.state.filetree} />
+            )}
+          />
+        </Router>
+      </div>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Folder from "./Folder";
 import File from "./File";
+import "./FilesandFolders.css";
 
 const getSubtreeFromTree = (path, filetree) => {
   if (path === "/") return filetree["/"];
@@ -34,7 +35,7 @@ const FilesandFoldersView = ({ match, location, filetree }) => {
   const currentTreeContents = Object.keys(currentLocationTree.contents);
   console.log(currentTreeContents);
   return (
-    <div>
+    <div className="flexcontainer">
       {currentTreeContents.map(node => {
         const currnode = currentLocationTree.contents[node];
         return currnode.type === "folder" ? (

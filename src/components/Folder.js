@@ -1,23 +1,27 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import foldericon from "./folder.png";
 
 const Folder = ({ currentpath, folder, history }) => {
+  console.log(foldericon);
   return currentpath === "/" ? (
-    <button
-      onClick={() => {
+    <div
+      onDoubleClick={() => {
         history.push(`${currentpath}${folder.name}`);
       }}
     >
-      {folder.name}
-    </button>
+      <img style={{ display: "block" }} src={foldericon} alt="" />
+      <h5>{folder.name}</h5>
+    </div>
   ) : (
-    <button
-      onClick={() => {
+    <div
+      onDoubleClick={() => {
         history.push(`${currentpath}/${folder.name}`);
       }}
     >
-      {folder.name}
-    </button>
+      <img style={{ display: "block" }} src={foldericon} alt="" />
+      <h5>{folder.name}</h5>
+    </div>
   );
 };
 
