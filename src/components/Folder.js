@@ -1,5 +1,24 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-const Folder = ({ folder }) => <div>{folder.name}</div>;
+const Folder = ({ currentpath, folder, history }) => {
+  return currentpath === "/" ? (
+    <button
+      onClick={() => {
+        history.push(`${currentpath}${folder.name}`);
+      }}
+    >
+      {folder.name}
+    </button>
+  ) : (
+    <button
+      onClick={() => {
+        history.push(`${currentpath}/${folder.name}`);
+      }}
+    >
+      {folder.name}
+    </button>
+  );
+};
 
-export default Folder;
+export default withRouter(Folder);
