@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import FilesandFoldersView from "./components/FilesandFoldersView";
 import addNodeToTree from "./utils/addNodeToTree";
+import deleteNodeFromTree from "./utils/deleteNodeFromTree";
 import "./App.css";
 
 class App extends Component {
@@ -65,10 +66,17 @@ class App extends Component {
       }
     };
     this.addToTree = this.addToTree.bind(this);
+    this.deleteFromTree = this.deleteFromTree.bind(this);
   }
 
   addToTree(node, location) {
     const updatedTree = addNodeToTree(location, this.state.filetree, node);
+    const newFileTree = Object.assign({}, updatedTree);
+    this.setState({ filetree: newFileTree });
+  }
+
+  deleteFromTree(location, node) {
+    const updatedTree = deleteNodeFromTree(location, this.state.filetree, node);
     const newFileTree = Object.assign({}, updatedTree);
     this.setState({ filetree: newFileTree });
   }
@@ -84,6 +92,7 @@ class App extends Component {
                 {...props}
                 addToTree={this.addToTree}
                 filetree={this.state.filetree}
+                deleteFromTree={this.deleteFromTree}
               />
             )}
           />

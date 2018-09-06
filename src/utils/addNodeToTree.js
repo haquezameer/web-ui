@@ -1,9 +1,11 @@
 const addNodeToTree = (path, filetree, newNode) => {
+  console.log(path);
   if (path === "/") {
     filetree["/"].contents[newNode.name] = newNode;
     return filetree;
   }
   const arr = path.split("/");
+  console.log(arr);
   let cur = filetree["/"],
     next = "";
   while (arr.length !== 0) {

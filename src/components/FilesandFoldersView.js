@@ -102,9 +102,15 @@ class FilesandFoldersView extends Component {
               key={currnode.name}
               currentpath={match.url}
               folder={currnode}
+              deleteFromTree={this.props.deleteFromTree}
             />
           ) : (
-            <File key={currnode.name} file={currnode} />
+            <File
+              key={currnode.name}
+              currentpath={match.url}
+              file={currnode}
+              deleteFromTree={this.props.deleteFromTree}
+            />
           );
         })}
         <button onClick={this.openModal}>Add file/folder</button>

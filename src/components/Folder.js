@@ -8,7 +8,12 @@ import "./reactContextMenu.css";
 class Folder extends Component {
   handleClick = (e, data) => {
     console.log("deleting");
-    console.log(data.name);
+    let path =
+      data.currentpath === "/"
+        ? `${data.currentpath}${data.folder.name}`
+        : `${data.currentpath}/${data.folder.name}`;
+    path = path.replace("/", "");
+    this.props.deleteFromTree(path, data.folder);
   };
   render() {
     const { currentpath, folder, history } = this.props;
@@ -27,7 +32,7 @@ class Folder extends Component {
           </div>
         </ContextMenuTrigger>
         <ContextMenu id={`folderMenu-${folder.name}`}>
-          <MenuItem data={{ name: folder.name }} onClick={this.handleClick}>
+          <MenuItem data={{ folder, currentpath }} onClick={this.handleClick}>
             Delete
           </MenuItem>
         </ContextMenu>
