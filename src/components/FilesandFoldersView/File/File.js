@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import fileicon from "./file.png";
 
-import "./reactContextMenu.css";
+import "../../reactContextMenu.css";
 
 class File extends Component {
   handleClick = (e, data) => {
-    console.log("deleting");
-    console.log(data.file.name);
-    console.log(data.currentpath);
     let path =
       data.currentpath === "/"
         ? `${data.currentpath}${data.file.name}`

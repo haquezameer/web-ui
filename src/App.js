@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import FilesandFoldersView from "./components/FilesandFoldersView";
+import FilesandFoldersView from "./components/FilesandFoldersView/FilesandFoldersView";
 import addNodeToTree from "./utils/addNodeToTree";
 import deleteNodeFromTree from "./utils/deleteNodeFromTree";
 import "./App.css";

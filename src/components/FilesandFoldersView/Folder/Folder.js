@@ -3,11 +3,10 @@ import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { withRouter } from "react-router-dom";
 import foldericon from "./folder.png";
 
-import "./reactContextMenu.css";
+import "../../reactContextMenu.css";
 
 class Folder extends Component {
   handleClick = (e, data) => {
-    console.log("deleting");
     let path =
       data.currentpath === "/"
         ? `${data.currentpath}${data.folder.name}`
