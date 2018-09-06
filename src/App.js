@@ -65,21 +65,19 @@ class App extends Component {
         }
       }
     };
-    this.addToTree = this.addToTree.bind(this);
-    this.deleteFromTree = this.deleteFromTree.bind(this);
   }
 
-  addToTree(node, location) {
+  addToTree = (node, location) => {
     const updatedTree = addNodeToTree(location, this.state.filetree, node);
     const newFileTree = Object.assign({}, updatedTree);
     this.setState({ filetree: newFileTree });
-  }
+  };
 
-  deleteFromTree(location, node) {
+  deleteFromTree = (location, node) => {
     const updatedTree = deleteNodeFromTree(location, this.state.filetree, node);
     const newFileTree = Object.assign({}, updatedTree);
     this.setState({ filetree: newFileTree });
-  }
+  };
 
   render() {
     return (
