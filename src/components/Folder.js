@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import foldericon from "./folder.png";
 
 const Folder = ({ currentpath, folder, history }) => {
-  console.log(foldericon);
   return currentpath === "/" ? (
     <div
       onDoubleClick={() => {

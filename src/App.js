@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import FilesandFoldersView from "./components/FilesandFoldersView";
+import addNodeToTree from "./utils/addNodeToTree";
 import "./App.css";
 
 class App extends Component {
@@ -63,7 +64,15 @@ class App extends Component {
         }
       }
     };
+    this.addToTree = this.addToTree.bind(this);
   }
+
+  addToTree(node, location) {
+    const updatedTree = addNodeToTree(location, this.state.filetree, node);
+    const newFileTree = Object.assign({}, updatedTree);
+    this.setState({ filetree: newFileTree });
+  }
+
   render() {
     return (
       <div className="App">
@@ -71,7 +80,11 @@ class App extends Component {
           <Route
             path="/*"
             component={props => (
-              <FilesandFoldersView {...props} filetree={this.state.filetree} />
+              <FilesandFoldersView
+                {...props}
+                addToTree={this.addToTree}
+                filetree={this.state.filetree}
+              />
             )}
           />
         </Router>
