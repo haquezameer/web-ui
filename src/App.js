@@ -68,11 +68,14 @@ class App extends Component {
         }
       },
       indexes: {
-        "numb.mp3": [
-          "/videos/musicvideos/linkinpark",
-          "/videos/musicvideos/linkinpark",
-          "/videos/musicvideos/linkinpark"
-        ]
+        videos: ["/"],
+        docs: ["/"],
+        a: ["/"],
+        "numb.mp3": ["/videos/musicvideos/linkinpark"],
+        comedy: ["/videos"],
+        musicvideos: ["/videos"],
+        "c.pdf": ["/videos/musicvideos", "/docs"],
+        linkinpark: ["/videos/musicvideos"]
       }
     };
   }
@@ -80,7 +83,42 @@ class App extends Component {
   addToTree = (node, location) => {
     const updatedTree = addNodeToTree(location, this.state.filetree, node);
     const newFileTree = Object.assign({}, updatedTree);
-    this.setState({ filetree: newFileTree });
+    const newIndexes = this.state.indexes;
+    if (location.startsWith("/")) {
+      if (node.type === "folder") {
+        if (newIndexes[node.name]) {
+          newIndexes[node.name].push(location);
+        } else {
+          newIndexes[node.name] = new Array();
+          newIndexes[node.name].push(location);
+        }
+      } else {
+        if (newIndexes[`${node.name}.${node.ext}`]) {
+          newIndexes[`${node.name}.${node.ext}`].push(location);
+        } else {
+          newIndexes[`${node.name}.${node.ext}`] = new Array();
+          newIndexes[`${node.name}.${node.ext}`].push(location);
+        }
+      }
+    } else {
+      const locationFromRoot = `/${location}`;
+      if (node.type === "folder") {
+        if (newIndexes[node.name]) {
+          newIndexes[node.name].push(locationFromRoot);
+        } else {
+          newIndexes[node.name] = new Array();
+          newIndexes[node.name].push(locationFromRoot);
+        }
+      } else {
+        if (newIndexes[`${node.name}.${node.ext}`]) {
+          newIndexes[`${node.name}.${node.ext}`].push(location);
+        } else {
+          newIndexes[`${node.name}.${node.ext}`] = new Array();
+          newIndexes[`${node.name}.${node.ext}`].push(location);
+        }
+      }
+    }
+    this.setState({ filetree: newFileTree, indexes: { ...newIndexes } });
   };
 
   deleteFromTree = (location, node) => {

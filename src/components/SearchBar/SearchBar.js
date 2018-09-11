@@ -8,7 +8,7 @@ const MatchedList = ({ matches, showMatches, search, closeMatchList }) => (
     <ul className="matches-list">
       {matches.map(match => (
         <li onClick={closeMatchList} className="matches-list-item" key={match}>
-          <Link to={match}>{search}</Link>
+          <Link to={match}>{search}</Link> <em>{match}</em>
         </li>
       ))}
     </ul>
@@ -29,14 +29,12 @@ class SearchBar extends Component {
   };
   handleChange = e => {
     this.setState({ searchTerm: e.target.value });
-    console.log(e.target.value);
   };
   handleSubmit = e => {
     e.preventDefault();
     const { indexes } = this.props;
     const matches = indexes[this.state.searchTerm];
     this.setState({ matches, showMatches: true });
-    console.log(matches);
   };
   render() {
     return (
