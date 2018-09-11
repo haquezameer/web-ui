@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import FilesandFoldersView from "./components/FilesandFoldersView/FilesandFoldersView";
+import SearchBar from "./components/SearchBar/SearchBar";
+
 import addNodeToTree from "./utils/addNodeToTree";
 import deleteNodeFromTree from "./utils/deleteNodeFromTree";
+
 import "./App.css";
 
 class App extends Component {
@@ -63,6 +66,13 @@ class App extends Component {
             }
           }
         }
+      },
+      indexes: {
+        "numb.mp3": [
+          "/videos/musicvideos/linkinpark",
+          "/videos/musicvideos/linkinpark",
+          "/videos/musicvideos/linkinpark"
+        ]
       }
     };
   }
@@ -83,17 +93,20 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Route
-            path="/*"
-            component={props => (
-              <FilesandFoldersView
-                {...props}
-                addToTree={this.addToTree}
-                filetree={this.state.filetree}
-                deleteFromTree={this.deleteFromTree}
-              />
-            )}
-          />
+          <div>
+            <SearchBar indexes={this.state.indexes} />
+            <Route
+              path="/*"
+              component={props => (
+                <FilesandFoldersView
+                  {...props}
+                  addToTree={this.addToTree}
+                  filetree={this.state.filetree}
+                  deleteFromTree={this.deleteFromTree}
+                />
+              )}
+            />
+          </div>
         </Router>
       </div>
     );

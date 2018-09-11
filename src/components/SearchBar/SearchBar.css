@@ -1,0 +1,15 @@
+.matches-container {
+  width: 300px;
+  border: 1px solid blue;
+}
+
+.matches-list {
+  list-style-type: none;
+  padding: 5px;
+  margin: 0;
+}
+
+.matches-list-item {
+  padding: 1px;
+  font-weight: bold;
+}
