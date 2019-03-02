@@ -13,3 +13,8 @@
   padding: 1px;
   font-weight: bold;
 }
+
+#searchBar {
+  display: flex;
+  justify-content: center
+}
